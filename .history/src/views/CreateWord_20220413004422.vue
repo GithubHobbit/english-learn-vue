@@ -53,14 +53,15 @@ export default {
       formData.append('secondLang', this.secondLang);
 
       try {
-        await axios
-          .post(process.env.VUE_APP_BACKEND_URL + '/word', formData, {
+        await axios.post(
+          process.env.VUE_APP_BACKEND_URL + '/word',
+          formData,
+          {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
-            withCredentials: true,
-          })
-          .then(() => this.$router.push('/word'));
+          }
+        ).then(() => this.$router.push("/word"));
       } catch (err) {
         console.log(err);
       }
