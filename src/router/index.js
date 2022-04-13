@@ -55,7 +55,6 @@ const routes = [
   //     component: EditRecipe,
   //     beforeEnter: ifAuthenticated,
   //   },
-
 ]
 
 const router = createRouter({
