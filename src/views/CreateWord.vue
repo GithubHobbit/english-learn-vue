@@ -58,7 +58,7 @@ export default {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
-            withCredentials: true,
+            // withCredentials: true,
           })
           .then(() => this.$router.push('/word'));
       } catch (err) {
