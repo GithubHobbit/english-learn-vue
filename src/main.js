@@ -34,6 +34,7 @@ if (token) {
     // return error in production env
     console.log(error, "error from decoding token");
   }
+
   app.config.globalProperties.$http.defaults.headers.common["Authorization"] =
     "Bearer " + token;
 }
