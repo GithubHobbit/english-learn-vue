@@ -36,7 +36,9 @@ if (token) {
   }
 
   app.config.globalProperties.$http.defaults.headers = {
-    Authorization: 'Bearer ' + token,
+    'Cache-Control': null,
+    'X-Requested-With': null,
+    'Authorization': 'Bearer ' + token,
   };
 
   // app.config.globalProperties.$http.defaults.headers.common['Authorization'] =
