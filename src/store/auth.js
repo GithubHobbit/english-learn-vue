@@ -39,7 +39,6 @@ const actions = {
       return data;
     } catch (err) {
       commit('auth_error', err);
-      console.log('hi');
       console.log(err);
       localStorage.removeItem('token');
       if (err.response.data.errors) {
