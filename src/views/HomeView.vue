@@ -1,14 +1,15 @@
+
 <template>
   <div class="words">
-    <div class="word">
+    <div class="word" v-for="word in words" :key="word.id">
       <div class="content">
         <div class="translate">
-          <div class="firstLang">carsdf</div>
-          <div class="secondLang">машинfsdfsdfsdf</div>
+          <div class="firstLang">{{word.firstLang}}</div>
+          <div class="secondLang">{{word.secondLang}}</div>
         </div>
         <div class="picture">
           <img
-            src="https://wallbox.ru/wallpapers/main/201432/85cc25df34dd92d.jpg"
+            :src="word.picture"
             alt=""
           />
         </div>
@@ -26,111 +27,38 @@
         </a>
       </div>
     </div>
-    <div class="word">
-      <div class="content">
-        <div class="translate">
-          <div class="firstLang">carsdfssdghjsdfsdf sfsdfsdfsdfdfsdf</div>
-          <div class="secondLang">
-            машинаsdfsdfsdfsdsdfsdfsdfssdfsdfsdfsdfsdfsdfsdfsdнаsdfsdfsdfsdsdfsdfsdfsdsdfsdfsdfsdfsdfsdfsdfsdнаsdfsdfsdfsdsdfsdfsdfsdsdfsdfsdfsdfsdfsdfsdfsdнаsdfsdfsdfsdsdfsdfsdfsdsdfsdfsdfsdfsdfsdfsdfsdf
-          </div>
-        </div>
-        <div class="picture">
-          <img
-            src="https://wallbox.ru/wallpapers/main/201432/85cc25df34dd92d.jpg"
-            alt=""
-          />
-        </div>
-      </div>
-      <div class="tools">
-        <div class="edit">
-          <img src="@/../public/icons/editButton.svg" alt="" />
-        </div>
-        <div class="delete">
-          <img src="@/../public/icons/deleteButton.svg" alt="" />
-        </div>
-      </div>
-    </div>
-    <div class="word">
-      <div class="content">
-        <div class="translate">
-          <div class="firstLang">
-            carsdfssdghjgfsdfsdfsfsdfsdfsdfdfsdfghjgfsdfsdfsfsdfsdfsdfdfsdfghjgfsdfsdfsfsdfsdfsdfdfsdfghjgfsdfsdfsfsdfsdfsdfdfsdfghjgfsdfsdfsfsdfsdfsdfdfsdfghjgfsdfsdfsfsdfsdfsdfdfsdf
-          </div>
-          <div class="secondLang">
-            машинаsdfsdfsdfsdsdfsdfsdfsdsdfsdfsdfsdfsdfsdfsdfsdf
-          </div>
-        </div>
-        <div class="picture">
-          <img
-            src="https://wallbox.ru/wallpapers/main/201432/85cc25df34dd92d.jpg"
-            alt=""
-          />
-        </div>
-      </div>
-      <div class="tools">
-        <div class="edit">
-          <img src="@/../public/icons/editButton.svg" alt="" />
-        </div>
-        <div class="delete">
-          <img src="@/../public/icons/deleteButton.svg" alt="" />
-        </div>
-      </div>
-    </div>
-    <div class="word">
-      <div class="content">
-        <div class="translate">
-          <div class="firstLang">
-            carsdfssdghjgfsdfsdfsfsdfsdfsdfdfsdfghjgfsdfsdfsfsdfsdfsdfdfsdfghjgfsdfsdfsfsdfsdfsdfdfsdfghjgfsdfsdfsfsdfsdfsdfdfsdfghjgfsdfsdfsfsdfsdfsdfdfsdfghjgfsdfsdfsfsdfsdfsdfdfsdf
-          </div>
-          <div class="secondLang">
-            машинаsdfsdfsdfsdsdfsdfsdfsdsdfsdfsdfsdfsdsdfsdfsdfsdsdfsdfsdfsdfsdsdfsdfsdfsdsdfsdfsdfsdfsdsdfsdfsdfsdsdfsdfsdfsdfsdsdfsdfsdfsdsdfsdfsdfsdfsdsdfsdfsdfsdsdfsdfsdfsdfsdfsdfsdfsdf
-          </div>
-        </div>
-        <div class="picture">
-          <img
-            src="https://wallbox.ru/wallpapers/main/201432/85cc25df34dd92d.jpg"
-            alt=""
-          />
-        </div>
-      </div>
-      <div class="tools">
-        <div class="edit">
-          <img src="@/../public/icons/editButton.svg" alt="" />
-        </div>
-        <div class="delete">
-          <img src="@/../public/icons/deleteButton.svg" alt="" />
-        </div>
-      </div>
-    </div>
-    <div class="word">
-      <div class="content">
-        <div class="translate">
-          <div class="firstLang">
-            carsdfssdghjgfsdfsdfsfsdfsdfsdfdfsdfghjgfsdfsdfsfsdfsdfsdfdfsdfghjgfsdfsdfsfsdfsdfsdfdfsdfghjgfsdfsdfsfsdfsdfsdfdfsdfghjgfsdfsdfsfsdfsdfsdfdfsdfghjgfsdfsdfsfsdfsdfsdfdfsdf
-          </div>
-          <div class="secondLang">
-            машинаsdfsdfsdfsdsdfsdfsdfsdsdfsdfsdfsdfsdsdfsdfsdfsdsdfsdfsdfsdfsdsdfsdfsdfsdsdfsdfsdfsdfsdsdfsdfsdfsdsdfsdfsdfsdfsdsdfsdfsdfsdsdfsdfsdfsdfsdsdfsdfsdfsdsdfsdfsdfsdfsdfsdfsdfsdf
-          </div>
-        </div>
-        <div class="picture"></div>
-      </div>
-      <div class="tools">
-        <div class="edit">
-          <img src="@/../public/icons/editButton.svg" alt="" />
-        </div>
-        <div class="delete">
-          <img src="@/../public/icons/deleteButton.svg" alt="" />
-        </div>
-      </div>
-    </div>
   </div>
 </template>
+
+<script>
+import { mapGetters, mapActions } from "vuex";
+
+export default {
+  name: "DictionaryView",
+  methods: {
+    ...mapActions({
+      fetchWords: "FETCH_WORDS",
+    }),
+  },
+  mounted() {
+    this.fetchWords();
+  },
+
+  computed: {
+    // isLoggedIn: function () {
+    //   return this.$store.getters.isLoggedIn;
+    // },
+    ...mapGetters({
+      words: "WORDS",
+    }),
+  },
+};
+</script>
 
 <style>
 html {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
-  background-color: #505160;
   color: #f6f7fb;
 }
 

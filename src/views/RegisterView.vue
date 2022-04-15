@@ -50,7 +50,7 @@ export default {
     registerUser: function () {
       this.$store
         .dispatch("REGISTER", this.form)
-        .then(() => this.$router.push("/"))
+        .then(() => this.$router.push("/word"))
         .catch((err) => {
           this.visibleAlert = true;
           this.error = err;

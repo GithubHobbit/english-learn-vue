@@ -23,51 +23,51 @@ export default {
     return {
       items: [
         {
-          label: "Home",
-          icon: "pi pi-home",
+          label: 'Home',
+          icon: 'pi pi-home',
         },
         {
-          label: "About",
-          icon: "pi pi-exclamation-circle",
+          label: 'About',
+          icon: 'pi pi-exclamation-circle',
         },
         {
-          label: "Users",
+          label: 'Users',
           visible: () => this.isLoggedIn(),
-          icon: "pi pi-fw pi-user",
+          icon: 'pi pi-fw pi-user',
           items: [
             {
-              label: "Words",
-              icon: "pi pi-book",
-              to: "/word",
+              label: 'Words',
+              icon: 'pi pi-book',
+              to: '/word',
             },
             {
-              label: "Sign out",
-              icon: "pi pi-sign-out",
+              label: 'Sign out',
+              icon: 'pi pi-sign-out',
               command: () => this.logout(),
             },
           ],
         },
         {
-          label: "Guest",
+          label: 'Guest',
           visible: () => !this.isLoggedIn(),
-          icon: "pi pi-fw pi-user",
+          icon: 'pi pi-fw pi-user',
           items: [
             {
-              label: "Sign in",
-              icon: "pi pi-sign-in",
-              to: "/login",
+              label: 'Sign in',
+              icon: 'pi pi-sign-in',
+              to: '/login',
             },
             {
-              label: "Sign up",
-              icon: "pi pi-fw pi-user-plus",
-              to: "/register",
+              label: 'Sign up',
+              icon: 'pi pi-fw pi-user-plus',
+              to: '/register',
             },
           ],
         },
-                {
-          label: "Create Word",
-          icon: "pi pi-exclamation-circle",
-          to: "/word/create"
+        {
+          label: 'Create Word',
+          icon: 'pi pi-exclamation-circle',
+          to: '/word/create',
         },
       ],
     };
@@ -77,8 +77,8 @@ export default {
       return this.$store.getters.IS_LOGGED_IN;
     },
     logout() {
-      this.$store.dispatch("LOGOUT").then(() => {
-        this.$router.push("/login");
+      this.$store.dispatch('LOGOUT').then(() => {
+        this.$router.push('/login');
       });
     },
   },

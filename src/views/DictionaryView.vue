@@ -59,7 +59,7 @@ export default {
 html {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
-  background-color: #505160;
+  /*background-color: #505160;*/
   color: #f6f7fb;
 }
 

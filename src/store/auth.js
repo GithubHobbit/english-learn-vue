@@ -32,9 +32,10 @@ const actions = {
       console.log(data);
       const token = data.token;
       const user = data.user;
+      
 
       localStorage.setItem('token', token);
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       commit('auth_success', token, user);
       return data;
     } catch (err) {
