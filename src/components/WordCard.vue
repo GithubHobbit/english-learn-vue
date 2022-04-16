@@ -1,78 +1,50 @@
-
 <template>
-  <div class="words">
-    <div class="word" v-for="word in words" :key="word.id">
-      <div class="content">
-        <div class="translate">
-          <div class="firstLang">{{word.firstLang}}</div>
-          <div class="secondLang">{{word.secondLang}}</div>
-        </div>
-        <div class="picture">
-          <img
-            :src="word.picture"
-            alt=""
-          />
-        </div>
+  <div class="word">
+    <div class="content">
+      <div class="translate">
+        <div class="firstLang">{{ word.firstLang }}</div>
+        <div class="secondLang">{{ word.secondLang }}</div>
       </div>
-      <div class="tools">
-        <a href="">
-          <div class="edit">
-            <img src="@/../public/icons/editButton.svg" alt="" />
-          </div>
-        </a>
-        <a href="">
-          <div class="delete">
-            <img src="@/../public/icons/deleteButton.svg" alt="" />
-          </div>
-        </a>
+      <div class="picture">
+        <img :src="word.picture" alt="" />
+      </div>
+    </div>
+    <div class="tools">
+      <div class="edit">
+        <img src="@/../public/icons/editButton.svg" alt="" />
+      </div>
+      <div class="delete" @click="deleteWord(word.id)">
+        <img src="@/../public/icons/deleteButton.svg" alt="" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-
 export default {
-  name: "DictionaryView",
+  name: 'WordCard',
+  props: {
+    word: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
+  },
   methods: {
-    ...mapActions({
-      fetchWords: "FETCH_WORDS",
-    }),
-  },
-  mounted() {
-    this.fetchWords();
-  },
-
-  computed: {
-    // isLoggedIn: function () {
-    //   return this.$store.getters.isLoggedIn;
-    // },
-    ...mapGetters({
-      words: "WORDS",
-    }),
+    deleteWord() {
+      this.$store
+        .dispatch('DELETE_WORD', this.word.id)
+        .then(() => this.$router.go(0)); // TODO Нужно поменять
+    },
   },
 };
 </script>
-
 <style>
-html {
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  color: #f6f7fb;
-}
-
-.words {
-  display: flex;
-  flex-direction: column;
-  max-width: 800px;
-  margin: 10px auto;
-}
-
 .word {
   display: flex;
   justify-content: space-between;
-  border: 2px solid #E1B16A;
+  border: 2px solid #e1b16a;
   padding: 10px;
 }
 
@@ -104,12 +76,11 @@ html {
   равный междустрочному интервалу, данное свойство убираетэтот  отступ. 
   Аналогично можно добавить в div свойство  line-height: 0;*/
   border-radius: 10px;
-
 }
 
 .tools img {
   width: 25px;
-  filter: invert(1) sepia(30%);
+  /* filter: invert(1) sepia(30%); */
 }
 
 @media (min-width: 500px) {
@@ -124,7 +95,7 @@ html {
     flex: 1 1 0;
     padding-left: 10px;
     margin-left: 10px;
-    border-left: 2px dashed #E1B16A;
+    border-left: 2px dashed #e1b16a;
   }
 }
 
@@ -140,7 +111,7 @@ html {
   .secondLang {
     flex: 1 1 0;
     padding-left: 10px;
-    border-left: 2px dashed #E1B16A;
+    border-left: 2px dashed #e1b16a;
   }
 
   .picture {

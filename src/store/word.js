@@ -46,6 +46,7 @@ const actions = {
       const {id} = getDataToken();
       const words = await getWords(id);
       commit('setWords', words);
+      return words;
     } catch (err) {
       commit('setWordError', err);
     }
@@ -74,6 +75,8 @@ const actions = {
       commit('setWordError', err);
     }
   },
+
+  
 };
 
 const getters = {

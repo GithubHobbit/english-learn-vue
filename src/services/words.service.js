@@ -4,7 +4,7 @@ export const getWord = (id) =>
   request({ url: `word/${id}`, method: "get" });
 
 export const getWords = (userId) => 
-  request({ url: `word`, method: "get", data: userId});
+  request({ url: `word`, method: "get", data: userId}); //TODO здесь userId не нужен
 
 export const createWord = (wordData) =>
   request({ url: `word`, method: "post", data: wordData });
