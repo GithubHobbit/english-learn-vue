@@ -64,12 +64,9 @@ const actions = {
     }
   },
   LOGOUT({ commit }) {
-    return new Promise((resolve) => {
-      commit('logout');
-      localStorage.removeItem('token');
-      delete axios.defaults.headers.common['Authorization'];
-      resolve('result');
-    });
+    localStorage.removeItem('token');
+    delete axios.defaults.headers.common['Authorization'];
+    commit('logout');
   },
 };
 const getters = {
