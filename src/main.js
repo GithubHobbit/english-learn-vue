@@ -14,16 +14,11 @@ import 'primevue/resources/themes/saga-blue/theme.css'; //theme
 import 'primevue/resources/primevue.min.css'; //core css
 import 'primeicons/primeicons.css'; //icons
 
-import GAuth from 'vue3-google-oauth2'
-
-const gAuthOptions = { clientId: '909172888250-rq68nt21309v34u4gjggnl8likfnhi2e.apps.googleusercontent.com', prompt: 'consent', fetch_basic_profile: false }
-
 const app = createApp(App);
 app
   .use(router)
   .use(store)
   .use(PrimeVue)
-  .use(GAuth, gAuthOptions)
   .component('Menubar', Menubar)
   .component('InputText', InputText)
   .component('Card', Card)

@@ -27,17 +27,12 @@ const actions = {
   async LOGIN({ commit }, userData) {
     try {
       commit('auth_request');
-      const data = await loginUser(userData);
-
-      console.log(data);
-      const token = data.token;
-      const user = data.user;
-      
+      const { token, user } = await loginUser(userData);
 
       localStorage.setItem('token', token);
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       commit('auth_success', token, user);
-      return data;
+      return Promise.resolve('good');
     } catch (err) {
       commit('auth_error', err);
       console.log(err);
@@ -73,7 +68,7 @@ const actions = {
       commit('logout');
       localStorage.removeItem('token');
       delete axios.defaults.headers.common['Authorization'];
-      resolve();
+      resolve('result');
     });
   },
 };

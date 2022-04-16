@@ -1,33 +1,14 @@
 <template>
-  <div class="words">
+  <div class="container words">
     <WordCard v-for="word in wordsPage" :key="word.id" :word="word" />
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li
-          v-for="pageNumber in totalPages"
-          :key="pageNumber"
-          class="page-item"
-          @click="changePage(pageNumber)"
-        >
-          <a class="page-link" href="#">{{ pageNumber }}</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <Pagination :totalPages="totalPages" @change="changePage"/>
   </div>
 </template>
 
 <script>
 import WordCard from '@/components/WordCard.vue';
+import Pagination from '@/components/Pagination.vue';
+
 export default {
   name: 'DictionaryView',
   data() {
@@ -39,7 +20,7 @@ export default {
     };
   },
   components: {
-    WordCard,
+    WordCard, Pagination,
   },
 
   methods: {
@@ -61,28 +42,17 @@ export default {
     wordsPage: function() {
       return this.words.slice(this.page * this.limit - this.limit, this.page * this.limit);
     }
-    // isLoggedIn: function () {
-    //   return this.$store.getters.isLoggedIn;
-    // },
-    // totalPages: function () {
-    //   return Math.ceil(this.words.length / this.limit);
-    // },
   },
 };
 </script>
 
 <style>
-html {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
-  /*background-color: #505160;*/
-  color: #f6f7fb;
-}
 
-.words {
+
+/* .words {
   display: flex;
   flex-direction: column;
   max-width: 800px;
   margin: 10px auto;
-}
+} */
 </style>

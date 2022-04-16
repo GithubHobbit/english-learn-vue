@@ -56,7 +56,7 @@ export default {
         await axios
           .post(process.env.VUE_APP_BACKEND_URL + '/word', formData, {
             headers: {
-              'Content-Type': 'multipart/form-data'
+              'Content-Type': 'multipart/form-data',
             },
             // withCredentials: true,
           })
