@@ -3,10 +3,15 @@ import {
   getWords,
   createWord,
   deleteWord,
-  editWord,
+  editWords,
+  updateRepetedWords,
+  getDescription,
+  getWordsToRepeat,
+  getWordsToRepeatWithSentences,
 } from '@/services/words.service';
 import jwt from 'vue-jwt-decode';
 
+//TODO а надо ли это?
 function getDataToken() {
   const token = localStorage.getItem('token');
   if (token) {
@@ -26,6 +31,9 @@ const mutations = {
   },
   setWords(state, words) {
     state.words = words;
+  },
+  setDescription(state, description) {
+    state.description = description;
   },
   setWordError(state, error) {
     state.wordError = error;
@@ -51,18 +59,49 @@ const actions = {
       commit('setWordError', err);
     }
   },
-  async CREATE_WORD({ commit }, wordData) {
+  
+  async FETCH_WORDS_TO_REPEAT({ commit }, timeZone) {
     try {
-      await createWord(wordData);
+
+      const words = await getWordsToRepeat(timeZone);
+      commit('setWords', words);
+      return words;
     } catch (err) {
       commit('setWordError', err);
     }
   },
-  async EDIT_WORD({ commit }, { form, id }) {
-    console.log(form);
-    console.log(id);
+
+  async FETCH_WORDS_TO_REPEAT_WITH_SENTENCES({ commit }, timeZone) {
     try {
-      await editWord(form, id);
+      const words = await getWordsToRepeatWithSentences(timeZone);
+      commit('setWords', words);
+      return words;
+    } catch (err) {
+      commit('setWordError', err);
+    }
+  },
+
+  async CREATE_WORDS({ commit }, wordData, headers = {}) {
+    try {
+      const words = await createWord(wordData, headers);
+      return words;
+    } catch (err) {
+      commit('setWordError', err);
+    }
+  },
+  async EDIT_WORDS({ commit }, wordsData, headers = {}) {
+    try {
+      const words = await editWords(wordsData, headers);
+      return words;
+    } catch (err) {
+      commit('setWordError', err);
+    }
+  },
+
+  async UPDATE_REPETED_WORDS({ commit }, wordsData) {
+    try {
+      const words = await updateRepetedWords(wordsData);
+      return words;
     } catch (err) {
       commit('setWordError', err);
     }
@@ -76,18 +115,28 @@ const actions = {
     }
   },
 
-  
+  async GET_DESCRIPTION({ commit }, word) {
+    try {
+      const description = await getDescription(word);
+      commit('setDescription', description);
+      return description;
+    } catch (err) {
+      commit('setWordError', err);
+    }
+  },
 };
 
 const getters = {
   WORD: ({ word }) => word,
   WORDS: ({ words }) => words,
+  DESCRIPTION: ({ description }) => description,
   WORD_ERROR: ({ wordError }) => wordError,
 };
 
 const state = () => ({
   word: {},
   words: [],
+  description: {},
   wordError: null,
 });
 

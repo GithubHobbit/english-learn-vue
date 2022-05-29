@@ -4,7 +4,10 @@ const AboutView = () => import('@/views/AboutView');
 const RegisterView = () => import('@/views/RegisterView');
 const LoginView = () => import('@/views/LoginView');
 const DictionaryView = () => import('@/views/DictionaryView');
-const CreateWord = () => import('@/views/CreateWord');
+const HomeView = () => import('@/views/HomeView');
+const RepeatWordsByCardsView = () => import('@/views/RepeatWordsByCardsView');
+const RepeatWordsByWriteWordsView = () => import('@/views/RepeatWordsByWriteWordsView');
+const RepeatWordsByBuildSentence = () => import('@/views/RepeatWordsByBuildSentence');
 
 const ifAuthenticated = (to, from, next) => {
   if (localStorage.getItem('token')) {
@@ -18,7 +21,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: DictionaryView,
+    component: HomeView,
     beforeEnter: ifAuthenticated,
   },
   {
@@ -28,11 +31,29 @@ const routes = [
     beforeEnter: ifAuthenticated,
   },
   {
-    path: '/word/create',
-    name: 'createWord',
-    component: CreateWord,
+    path: '/repeat_words_by_cards',
+    name: 'repeat_words_by_cards',
+    component: RepeatWordsByCardsView,
     beforeEnter: ifAuthenticated,
   },
+  {
+    path: '/repeat_words_by_write_words',
+    name: 'repeat_words_by_write_words',
+    component: RepeatWordsByWriteWordsView,
+    beforeEnter: ifAuthenticated,
+  },
+  {
+    path: '/repeat_words_by_build_a_sentence',
+    name: 'repeat_words_by_build_a_sentence',
+    component: RepeatWordsByBuildSentence,
+    beforeEnter: ifAuthenticated,
+  },
+  // {
+  //   path: '/word/create',
+  //   name: 'createWords',
+  //   component: CreateWords,
+  //   beforeEnter: ifAuthenticated,
+  // },
   {
     path: '/about',
     name: 'about',

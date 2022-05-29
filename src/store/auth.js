@@ -28,8 +28,9 @@ const actions = {
     try {
       commit('auth_request');
       const { token, user } = await loginUser(userData);
-
+      console.log('hi');
       localStorage.setItem('token', token);
+      axios.defaults.headers.common = {};
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       commit('auth_success', token, user);
       return Promise.resolve('good');
@@ -63,9 +64,11 @@ const actions = {
       return Promise.reject(err.response.data.message);
     }
   },
+
   LOGOUT({ commit }) {
     localStorage.removeItem('token');
-    delete axios.defaults.headers.common['Authorization'];
+    axios.defaults.headers.common = {};
+    axios.defaults.headers.common['Authorization'] = '';
     commit('logout');
   },
 };

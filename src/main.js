@@ -36,7 +36,7 @@ if (token) {
   }
 
   app.config.globalProperties.$http.defaults.headers = {
-    'Authorization': `Bearer ${token}`,
+    Authorization: `Bearer ${token}`,
   };
 
   // app.config.globalProperties.$http.defaults.headers.common['Authorization'] =
