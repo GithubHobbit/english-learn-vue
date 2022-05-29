@@ -101,7 +101,12 @@ export default {
       let formData = new FormData();
 
       for (let i = 0; i < this.newWords.length; i++) {
-        if (!this.newWords[i].firstLang || !this.newWords[i].example || !this.newWords[i].secondLang || !this.newWords[i].translateExample) {
+        if (
+          !this.newWords[i].firstLang ||
+          !this.newWords[i].example ||
+          !this.newWords[i].secondLang ||
+          !this.newWords[i].translateExample
+        ) {
           this.newWords.splice(i, 1);
           i--;
           continue;
@@ -127,7 +132,15 @@ export default {
           console.log(err);
         });
 
-      // this.newWords = [{}];
+      this.newWords = [
+        {
+          firstLang: '',
+          secondLang: '',
+          example: '',
+          translateExample: '',
+          picture: null,
+        },
+      ];
     },
   },
 };
