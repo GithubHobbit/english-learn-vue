@@ -100,23 +100,23 @@ export default {
     async create() {
       let formData = new FormData();
 
-      // for (let i = 0; i < this.newWords.length; i++) {
-      //   if (!this.newWords[i].firstLang || !this.newWords[i].example || !this.newWords[i].secondLang || !this.newWords[i].translateExample) {
-      //     this.newWords.splice(i, 1);
-      //     i--;
-      //     continue;
-      //   }
-      //   const firstLang = this.newWords[i].firstLang.trim();
-      //   const secondLang = this.newWords[i].secondLang.trim();
-      //   const example = this.newWords[i].example.trim();
-      //   const translateExample = this.newWords[i].translateExample.trim();
+      for (let i = 0; i < this.newWords.length; i++) {
+        if (!this.newWords[i].firstLang || !this.newWords[i].example || !this.newWords[i].secondLang || !this.newWords[i].translateExample) {
+          this.newWords.splice(i, 1);
+          i--;
+          continue;
+        }
+        const firstLang = this.newWords[i].firstLang.trim();
+        const secondLang = this.newWords[i].secondLang.trim();
+        const example = this.newWords[i].example.trim();
+        const translateExample = this.newWords[i].translateExample.trim();
 
-      //   formData.append(`firstLang${i}`, firstLang);
-      //   formData.append(`secondLang${i}`, secondLang);
-      //   formData.append(`example${i}`, example);
-      //   formData.append(`translateExample${i}`, translateExample);
-      //   formData.append(`picture${i}`, this.newWords[i].picture);
-      // }
+        formData.append(`firstLang${i}`, firstLang);
+        formData.append(`secondLang${i}`, secondLang);
+        formData.append(`example${i}`, example);
+        formData.append(`translateExample${i}`, translateExample);
+        formData.append(`picture${i}`, this.newWords[i].picture);
+      }
 
       this.createWords(formData, { 'Content-Type': 'multipart/form-data' })
         .then((words) => {
