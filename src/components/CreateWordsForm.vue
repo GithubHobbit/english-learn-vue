@@ -132,15 +132,8 @@ export default {
           console.log(err);
         });
 
-      this.newWords = [
-        {
-          firstLang: '',
-          secondLang: '',
-          example: '',
-          translateExample: '',
-          picture: null,
-        },
-      ];
+      this.newWords = [];
+      this.addWord();
     },
   },
 };
