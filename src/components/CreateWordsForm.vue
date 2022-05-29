@@ -133,7 +133,6 @@ export default {
         });
 
       this.newWords = [];
-      this.addWord();
     },
   },
 };
