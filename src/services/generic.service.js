@@ -9,6 +9,10 @@ export const request = async ({ url, method, data, headers }) => {
     method,
     headers,
   });
+  console.log('response');
+  console.log(response);
+  console.log('data');
+  console.log(response.data);
   return response.data;
 };
 // const keys = Object.keys(err.response.data);

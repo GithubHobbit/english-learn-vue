@@ -9,8 +9,8 @@
 
       <WordCard :word="words[index]" />
 
-      <div class="mb-2 d-flex">
-        <div class="btn btn-secondary btn-lg" @click="prevCard">
+      <div class="d-flex">
+        <div class="flex-grow-1 btn btn-secondary btn-lg m-1" @click="prevCard">
           <svg class="bi" width="18" height="18" fill="white">
             <use
               xlink:href="@/assets/bootstrap-icons.svg#chevron-double-left"
@@ -18,19 +18,21 @@
           </svg>
         </div>
 
-        <div
-          class="btn btn-secondary btn-lg text-light d-flex align-items-center justify-content-center flex-grow-1 mx-2"
-          @click="changeWord"
-        >
-          Не вспомнил
-        </div>
-
-        <div class="btn btn-secondary btn-lg" @click="nextCard">
+        <div class="flex-grow-1 btn btn-secondary btn-lg m-1" @click="nextCard">
           <svg class="bi" width="18" height="18" fill="white">
             <use
               xlink:href="@/assets/bootstrap-icons.svg#chevron-double-right"
             />
           </svg>
+        </div>
+      </div>
+
+      <div class="d-flex">
+        <div :class="['w-50', 'btn', 'btn-secondary', {'btn-success': results[index] === true}, 'btn-lg', 'm-1']" @click="isRight(true)">
+          Вспомнил
+        </div>
+        <div :class="['w-50', 'btn', 'btn-secondary', {'btn-danger': results[index] === false}, 'btn-lg', 'm-1']" @click="isRight(false)">
+          Не вспомнил
         </div>
       </div>
       <div>
@@ -53,6 +55,7 @@ export default {
     return {
       words: [],
       index: 0,
+      results: [],
     };
   },
   components: {
@@ -67,22 +70,25 @@ export default {
       this.index--;
       if (this.index < 0) this.index = 0;
     },
-    changeWord() {
-      //this.words[this.index].lastRepetition = new Date();
-      //console.log(this.words[this.index].lastRepetition);
-      this.words[this.index].numberErrors++;
-      this.nextCard();
+    isRight(result) {
+      this.results[this.index] = result;
     },
     updateWords() {
-      const words = this.words;
-      for (let i in words) {
-        words[i].lastRepetition = new Date();
-        words[i].numberRepetition++;
+      for (let i in this.results) {
+        if (this.results[i] === null)
+          continue;
+        if (this.results[i] === false)
+          this.words[i].numberErrors++;
+        this.words[i].lastRepetition = new Date();
+        this.words[i].numberRepetition++;
       }
-      this.$store.dispatch('UPDATE_REPETED_WORDS', { words }).then((words) => {
-        console.log(words);
-        this.$router.push({ name: 'home' });
-      });
+
+      this.$store
+        .dispatch('UPDATE_REPETED_WORDS', { words: this.words })
+        .then((words) => {
+          console.log(words);
+          this.$router.push({ name: 'home' });
+        });
     },
   },
   created() {
@@ -93,6 +99,9 @@ export default {
       )
       .then((repeatWords) => {
         this.words = repeatWords;
+        while (this.results.length < this.words.length) {
+          this.results.push(null);
+        }
       });
   },
 };
