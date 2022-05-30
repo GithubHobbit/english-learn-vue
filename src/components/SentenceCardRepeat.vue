@@ -42,7 +42,6 @@ export default {
       sizeWords: 0,
     };
   },
-  //TODO сделать нормальную переотрисовку
   props: {
 
     example: {

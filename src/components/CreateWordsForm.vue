@@ -88,7 +88,11 @@ export default {
       });
     },
     changeWord(word, index) {
-      this.newWords[index] = word;
+      this.newWords[index].firstLang = word.firstLang;
+      this.newWords[index].secondLang = word.secondLang;
+      this.newWords[index].example = word.example;
+      this.newWords[index].translateExample = word.translateExample;
+      this.newWords[index].picture = word.picture;
     },
     deleteWord(index) {
       this.newWords.splice(index, 1);
