@@ -28,10 +28,30 @@
       </div>
 
       <div class="d-flex">
-        <div :class="['w-50', 'btn', 'btn-secondary', {'btn-success': results[index] === true}, 'btn-lg', 'm-1']" @click="isRight(true)">
+        <div
+          :class="[
+            'w-50',
+            'btn',
+            'btn-secondary',
+            { 'btn-success': results[index] === true },
+            'btn-lg',
+            'm-1',
+          ]"
+          @click="isRight(true)"
+        >
           Вспомнил
         </div>
-        <div :class="['w-50', 'btn', 'btn-secondary', {'btn-danger': results[index] === false}, 'btn-lg', 'm-1']" @click="isRight(false)">
+        <div
+          :class="[
+            'w-50',
+            'btn',
+            'btn-secondary',
+            { 'btn-danger': results[index] === false },
+            'btn-lg',
+            'm-1',
+          ]"
+          @click="isRight(false)"
+        >
           Не вспомнил
         </div>
       </div>
@@ -75,10 +95,8 @@ export default {
     },
     updateWords() {
       for (let i in this.results) {
-        if (this.results[i] === null)
-          continue;
-        if (this.results[i] === false)
-          this.words[i].numberErrors++;
+        if (this.results[i] === null) continue;
+        if (this.results[i] === false) this.words[i].numberErrors++;
         this.words[i].lastRepetition = new Date();
         this.words[i].numberRepetition++;
       }
@@ -93,10 +111,10 @@ export default {
   },
   created() {
     this.$store
-      .dispatch(
-        'FETCH_WORDS_TO_REPEAT',
-        Intl.DateTimeFormat().resolvedOptions().timeZone
-      )
+      .dispatch('FETCH_WORDS_TO_REPEAT', {
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        dateToRepeat: new Date(),
+      })
       .then((repeatWords) => {
         this.words = repeatWords;
         while (this.results.length < this.words.length) {

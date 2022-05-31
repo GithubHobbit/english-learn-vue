@@ -1,9 +1,9 @@
 <template lang="">
   <nav class="row navbar navbar-expand-md navbar-dark bg-primary bg-gradient">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
+      <router-link class="navbar-brand" to="/">
         <img src="@/assets/logo.png" width="50"/>
-      </a>
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"

@@ -24,8 +24,8 @@ export const deleteWord = (id) =>
 export const getDescription = (word) =>
   request({ url: `word/description_word/${word}`, method: 'get' });
 
-export const getWordsToRepeat = (timeZone) =>
-  request({ url: `word/get_words_to_repeat/`, method: 'get', data: timeZone });
+export const getWordsToRepeat = (time) =>
+  request({ url: `word/get_words_to_repeat/`, method: 'post', data: time });
 
 export const getWordsToRepeatWithSentences = (timeZone) =>
   request({ url: `word/get_words_to_repeat_with_sentences/`, method: 'get', data: timeZone });

@@ -8,6 +8,7 @@ const HomeView = () => import('@/views/HomeView');
 const RepeatWordsByCardsView = () => import('@/views/RepeatWordsByCardsView');
 const RepeatWordsByWriteWordsView = () => import('@/views/RepeatWordsByWriteWordsView');
 const RepeatWordsByBuildSentence = () => import('@/views/RepeatWordsByBuildSentence');
+const ScheduleRepeatWords = () => import('@/views/ScheduleRepeatWords')
 
 const ifAuthenticated = (to, from, next) => {
   if (localStorage.getItem('token')) {
@@ -48,12 +49,12 @@ const routes = [
     component: RepeatWordsByBuildSentence,
     beforeEnter: ifAuthenticated,
   },
-  // {
-  //   path: '/word/create',
-  //   name: 'createWords',
-  //   component: CreateWords,
-  //   beforeEnter: ifAuthenticated,
-  // },
+  {
+    path: '/schedule_repeat_words',
+    name: 'schedule_repeat_words',
+    component: ScheduleRepeatWords,
+    beforeEnter: ifAuthenticated,
+  },
   {
     path: '/about',
     name: 'about',

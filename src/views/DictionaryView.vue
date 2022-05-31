@@ -35,7 +35,7 @@ export default {
     return {
       words: [],
       page: 1,
-      limit: 6,
+      limit: 10,
       totalPages: 0,
       wordNeedToUpdate: {},
       refreshCards: 0,

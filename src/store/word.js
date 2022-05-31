@@ -51,7 +51,7 @@ const actions = {
   },
   async FETCH_WORDS({ commit }) {
     try {
-      const {id} = getDataToken();
+      const { id } = getDataToken();
       const words = await getWords(id);
       commit('setWords', words);
       return words;
@@ -59,11 +59,10 @@ const actions = {
       commit('setWordError', err);
     }
   },
-  
-  async FETCH_WORDS_TO_REPEAT({ commit }, timeZone) {
-    try {
 
-      const words = await getWordsToRepeat(timeZone);
+  async FETCH_WORDS_TO_REPEAT({ commit }, { timeZone, dateToRepeat }) {
+    try {
+      const words = await getWordsToRepeat({ timeZone, dateToRepeat });
       commit('setWords', words);
       return words;
     } catch (err) {

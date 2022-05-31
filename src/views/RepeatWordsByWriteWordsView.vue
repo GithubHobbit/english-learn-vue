@@ -65,7 +65,6 @@
   </div>
 </template>
 <script>
-
 export default {
   data() {
     return {
@@ -113,10 +112,10 @@ export default {
 
   created() {
     this.$store
-      .dispatch(
-        'FETCH_WORDS_TO_REPEAT',
-        Intl.DateTimeFormat().resolvedOptions().timeZone
-      )
+      .dispatch('FETCH_WORDS_TO_REPEAT', {
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        dateToRepeat: new Date(),
+      })
       .then((repeatWords) => {
         this.words = repeatWords;
         for (let i = 0; i < this.words.length; i++) this.wordsResult.push({});
