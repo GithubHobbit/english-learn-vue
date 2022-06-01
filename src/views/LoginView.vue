@@ -61,7 +61,7 @@ export default {
     loginUser: function () {
       this.$store
         .dispatch('LOGIN', this.form)
-        .then(() => this.$router.push('/word'))
+        .then(() => this.$router.push('/'))
         .catch((err) => {
           this.visibleAlert = true;
           this.error = err;

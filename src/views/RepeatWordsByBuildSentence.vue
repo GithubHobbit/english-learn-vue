@@ -1,12 +1,12 @@
 <template lang="">
   <div class="row mx-auto" style="max-width: 480px">
     <template v-if="words.length"
-      ><div class="mt-2">
-        <div class="bg-secondary rounded text-light text-center">
+      ><div class="my-2">
+        <div class="border border-primary rounded text-center">
           Слово {{ index + 1 }} из {{ words.length }}
         </div>
       </div>
-
+      <h4 class="my-3 ">Составьте:</h4>
       <SentenceCard
         :example="words[index].example"
         :translateExample="words[index].translateExample"
@@ -30,7 +30,7 @@
         </div>
         <div
           v-else
-          class="btn btn-secondary btn-lg text-light flex-grow-1 m-1"
+          class="btn btn-primary btn-lg text-light flex-grow-1 m-1"
           @click="checkWord"
         >
           Проверить
@@ -66,15 +66,6 @@ export default {
     nextCard() {
       if (this.index >= this.words.length) this.$router.push({ name: 'home' });
 
-      const word = this.words[this.index];
-      word.lastRepetition = new Date();
-      word.numberRepetition++;
-      this.$store
-        .dispatch('UPDATE_REPETED_WORDS', { words: [word] })
-        .then((words) => {
-          console.log(words);
-        });
-
       this.index++;
       this.isChecked = false;
       this.isRight = null;
@@ -87,6 +78,15 @@ export default {
         this.words[this.index].numberErrors++;
         this.isRight = false;
       } else this.isRight = true;
+
+      const word = this.words[this.index];
+      word.lastRepetition = new Date();
+      word.numberRepetition++;
+      this.$store
+        .dispatch('UPDATE_REPETED_WORDS', { words: [word] })
+        .then((words) => {
+          console.log(words);
+        });
     },
 
     changeSentence(sentence) {

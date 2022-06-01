@@ -51,15 +51,16 @@ export default {
 <style>
 .word {
   cursor: pointer;
-  min-height: 300px;
+  min-height: 200px;
 }
 
 .front,
 .back {
-  min-height: 300px;
+  min-height: 200px;
   overflow: hidden;
   backface-visibility: hidden;
   transition: transform 0.5s linear;
+  background-image: url(../assets/card-bg-4.jpg);
 }
 
 .front {
@@ -68,7 +69,7 @@ export default {
 
 .back {
   transform: perspective(600px) rotateY(180deg);
-  background-color: #f1f1f1;
+  /* background-color: #f1f1f1; */
 }
 
 input[type=checkbox]:checked + label .front {

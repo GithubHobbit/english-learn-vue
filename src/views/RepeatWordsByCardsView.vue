@@ -2,7 +2,7 @@
   <div class="row mx-auto" style="max-width: 480px">
     <template v-if="words.length"
       ><div class="mt-2">
-        <div class="bg-secondary rounded text-light text-center">
+        <div class="border border-primary rounded text-center">
           Слово {{ index + 1 }} из {{ words.length }}
         </div>
       </div>
@@ -10,16 +10,24 @@
       <WordCard :word="words[index]" />
 
       <div class="d-flex">
-        <div class="flex-grow-1 btn btn-secondary btn-lg m-1" @click="prevCard">
-          <svg class="bi" width="18" height="18" fill="white">
+        <div
+          class="flex-grow-1 border border-primary text-center btn-lg m-1"
+          style="cursor: pointer"
+          @click="prevCard"
+        >
+          <svg class="bi" width="18" height="18" fill="black">
             <use
               xlink:href="@/assets/bootstrap-icons.svg#chevron-double-left"
             />
           </svg>
         </div>
 
-        <div class="flex-grow-1 btn btn-secondary btn-lg m-1" @click="nextCard">
-          <svg class="bi" width="18" height="18" fill="white">
+        <div
+          class="flex-grow-1 border border-primary text-center btn-lg m-1"
+          style="cursor: pointer"
+          @click="nextCard"
+        >
+          <svg class="bi" width="18" height="18" fill="black">
             <use
               xlink:href="@/assets/bootstrap-icons.svg#chevron-double-right"
             />
@@ -57,7 +65,7 @@
       </div>
       <div>
         <div
-          class="btn btn-warning d-flex justify-content-center"
+          class="btn btn-warning d-flex justify-content-center m-1"
           @click="updateWords"
         >
           Закончить
@@ -91,7 +99,8 @@ export default {
       if (this.index < 0) this.index = 0;
     },
     isRight(result) {
-      this.results[this.index] = result;
+      if (this.results[this.index] === result) this.results[this.index] = null;
+      else this.results[this.index] = result;
     },
     updateWords() {
       for (let i in this.results) {

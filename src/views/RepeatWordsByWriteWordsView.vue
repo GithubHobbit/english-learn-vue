@@ -12,7 +12,7 @@
           class="row border-bottom border-2 border-primary py-4 my-3"
           style="min-height: 142px"
         >
-          <div class="col-8">
+          <div class="col-7 col-sm-8">
             <div class="mb-2">{{ word.secondLang }}</div>
             <div
               v-if="wordsResult[index].isPrompted === true"
@@ -41,15 +41,15 @@
               Не правильно
             </div>
           </div>
-          <div class="col-4 d-flex flex-column align-content-stretch">
+          <div class="col-5 col-sm-4 d-flex flex-column align-content-stretch">
             <button
-              class="flex-grow-1 btn btn-info my-1"
+              class="flex-grow-1 btn btn-info my-1 text-wrap"
               @click="checkWord(index)"
             >
               Проверить
             </button>
             <button
-              class="flex-grow-1 btn btn-warning"
+              class="flex-grow-1 btn btn-warning text-wrap"
               @click="promptWord(index)"
             >
               Подсказать
