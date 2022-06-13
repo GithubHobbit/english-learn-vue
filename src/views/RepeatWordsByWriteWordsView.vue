@@ -117,6 +117,7 @@ export default {
         dateToRepeat: new Date(),
       })
       .then((repeatWords) => {
+        console.log(repeatWords);
         this.words = repeatWords;
         for (let i = 0; i < this.words.length; i++) this.wordsResult.push({});
         console.log(repeatWords);
